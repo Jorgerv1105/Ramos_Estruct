@@ -22,7 +22,7 @@ void opcion1();
 void opcion2();
 void opcion3();
 void ingresarDatosAlumno(struct Alumno *alumno);
-void mostrarDatosAlumno(const struct Alumno *alumno);
+
 
 int main()
 {
@@ -86,6 +86,6 @@ void opcion1()
         mostrarDatosAlumno(&alumnos[i]);
     }
 
-    // Liberar la memoria asignada al array de alumnos
+    // Liberar la memoria asignada 
     free(alumnos);
 
