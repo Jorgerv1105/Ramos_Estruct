@@ -75,12 +75,12 @@ int main()
 
     return 0;
 }
-
+//Defino las funciones y las operaciones que se van a realizar
 void obtenerDatosAlumno(struct Alumno *alumno)
 {
     printf("Matrícula del estudiante: ");
     scanf("%d", &alumno->matricula);
-    
+
     while (getchar() != '\n');
 
     printf("Nombre del estudiante: ");
