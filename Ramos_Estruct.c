@@ -8,7 +8,7 @@
 #include <stdio.h>
 // Defino un limite 
 #define MAX_ALUMNOS 1000
-
+//Ingreso una estructura de alumnos 
 struct Alumno
 {
     int matricula;
@@ -17,7 +17,7 @@ struct Alumno
     char carrera[50];
     float promedio;
 };
-
+//Coloco la funciones que creo se pueden utilizar
 void obtenerDatosAlumno(struct Alumno *alumno);
 void mostrarDatosAlumno(const struct Alumno *alumno);
 
@@ -26,7 +26,7 @@ int main()
     int n = 0;
     struct Alumno alumnos[MAX_ALUMNOS];
     int opcion;
-
+//Coloco el menu 
     do
     {
         // Menú
