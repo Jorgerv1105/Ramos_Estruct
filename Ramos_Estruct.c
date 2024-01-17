@@ -80,8 +80,7 @@ void obtenerDatosAlumno(struct Alumno *alumno)
 {
     printf("Matrícula del estudiante: ");
     scanf("%d", &alumno->matricula);
-
-    // Consumir el carácter de nueva línea residual en el búfer de entrada
+    
     while (getchar() != '\n');
 
     printf("Nombre del estudiante: ");
