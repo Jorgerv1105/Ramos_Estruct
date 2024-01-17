@@ -4,10 +4,11 @@
 // gets();
 // puts();
 // fflush();
+//Coloco la biblioteca
 #include <stdio.h>
-#include <stdlib.h>
+// Defino un limite devido a que el codigo no funciona como es devido si no realizo esto 
+#define MAX_ALUMNOS 1000
 
-// Definición de la estructura Alumno
 struct Alumno
 {
     int matricula;
@@ -17,75 +18,87 @@ struct Alumno
     float promedio;
 };
 
-// Funciones
-void opcion1();
-void opcion2();
-void opcion3();
-void ingresarDatosAlumno(struct Alumno *alumno);
-
+void obtenerDatosAlumno(struct Alumno *alumno);
+void mostrarDatosAlumno(const struct Alumno *alumno);
 
 int main()
 {
+    int n = 0;
+    struct Alumno alumnos[MAX_ALUMNOS];
     int opcion;
 
     do
     {
-        // Mostrar el menú
-        printf("\nMenú:\n");
-        printf("1. Ingresar datos de alumnos\n");
-        printf("2. Mostrar datos de alumnos\n");
+        // Menú
+        printf("\n---- Menú ----\n");
+        printf("1. Ingresar más alumnos\n");
+        printf("2. Mostrar datos de los alumnos\n");
         printf("3. Salir\n");
-
-        // Solicitar al usuario que ingrese una opción
-        printf("Ingrese el número de la opción deseada: ");
+        printf("Ingrese su opción: ");
         scanf("%d", &opcion);
 
-        // Ejecutar la opción seleccionada
         switch (opcion)
         {
         case 1:
-            opcion1();
+            // Ingresar más alumnos
+            if (n < MAX_ALUMNOS)
+            {
+                printf("\nIngresar datos del nuevo alumno:\n");
+                obtenerDatosAlumno(&alumnos[n]);
+                n++;
+            }
+            else
+            {
+                printf("No se pueden agregar más alumnos. Límite alcanzado.\n");
+            }
             break;
+
         case 2:
-            opcion2();
+            // Mostrar datos de los alumnos
+            printf("\n\tDatos de los alumnos:\n");
+            for (int i = 0; i < n; i++)
+            {
+                printf("\n \t Alumno %d:\n", i + 1);
+                mostrarDatosAlumno(&alumnos[i]);
+            }
             break;
+
         case 3:
-            printf("Gracias por utilizar el programa.\n");
+            // Salir del programa
             break;
+
         default:
-            printf("Opción no válida. Por favor, ingrese un número válido.\n");
+            printf("Opción no válida. Intente de nuevo.\n");
         }
+
     } while (opcion != 3);
 
     return 0;
 }
 
-void opcion1()
+void obtenerDatosAlumno(struct Alumno *alumno)
 {
-    printf("Has seleccionado la Opción 1.\n");
-    int n;
+    printf("Matrícula del estudiante: ");
+    scanf("%d", &alumno->matricula);
 
-    // Solicitar al usuario el número de alumnos
-    printf("Ingrese el número de alumnos: ");
-    scanf("%d", &n);
+    // Consumir el carácter de nueva línea residual en el búfer de entrada
+    while (getchar() != '\n');
 
-    // Limpia la variable de entrada
-    fflush(stdin);
-    // Ingresar datos para cada alumno
-    for (int i = 0; i < n; ++i)
-    {
-        printf("\nIngrese los datos para el alumno %d:\n", i + 1);
-        ingresarDatosAlumno(&alumnos[i]);
-    }
+    printf("Nombre del estudiante: ");
+    fgets(alumno->nombre, sizeof(alumno->nombre), stdin);
+    printf("Dirección del estudiante: ");
+    fgets(alumno->direccion, sizeof(alumno->direccion), stdin);
+    printf("Carrera: ");
+    fgets(alumno->carrera, sizeof(alumno->carrera), stdin);
+    printf("Promedio: ");
+    scanf("%f", &alumno->promedio);
+}
 
-    // Mostrar datos de todos los alumnos
-    printf("\nDatos de todos los alumnos:\n");
-    for (int i = 0; i < n; ++i)
-    {
-        printf("\nDatos del alumno %d:\n", i + 1);
-        mostrarDatosAlumno(&alumnos[i]);
-    }
-
-    // Liberar la memoria asignada 
-    free(alumnos);
-
+void mostrarDatosAlumno(const struct Alumno *alumno)
+{
+    printf("Matrícula del estudiante: %d\n", alumno->matricula);
+    printf("Nombre del estudiante: %s", alumno->nombre);
+    printf("Dirección del estudiante: %s", alumno->direccion);
+    printf("Carrera: %s", alumno->carrera);
+    printf("Promedio: %.2f\n", alumno->promedio);
+}
