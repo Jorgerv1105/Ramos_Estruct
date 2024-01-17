@@ -6,7 +6,7 @@
 // fflush();
 //Coloco la biblioteca
 #include <stdio.h>
-// Defino un limite devido a que el codigo no funciona como es devido si no realizo esto 
+// Defino un limite 
 #define MAX_ALUMNOS 1000
 
 struct Alumno
